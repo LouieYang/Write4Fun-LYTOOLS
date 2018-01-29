@@ -15,7 +15,7 @@ This is a Pytorch implementation for matching part of Online Contactless Palmpri
 
 You need to specify the path of training dataset path, shifting size (***default is 5***) and triplet alpha (***default is 10***) and then run the command for easy training.
 
-```Python
+```
 python main.py --dp_prefix IITD --train_path ./path-to-iitd-folder/ --model RFN-128 --batch_size 10
 ```
 
@@ -40,7 +40,7 @@ For all the protocol files, **you need to specify the path to thetesting dataset
 
 *Example:*
 
-```Python
+```
 python protocols/XXX.py --test_path ./path-to-testset/ --model_path ./path-to-model/ --out_path ./dest-to-store-npy
 ```
 
@@ -50,7 +50,7 @@ For each of the targeting dataset, we prepare a plot function for each of the te
 
 *Example Usage:*
 
-```Python
+```
 python plot/roc_iitd.py --src_npy ./path-to-your-stored-npy/ --dest ./path-to-target-pdf --label RFN-128
 ```
 
@@ -60,7 +60,7 @@ It would be nice if we put all the procedure together. So let's take training wi
 
 * Change directory to code folder
 
-``` Python
+```
 cd /palmprint-recog/code/
 ```
 
@@ -68,7 +68,7 @@ cd /palmprint-recog/code/
 
 Please make sure there are `IITD5` under `/palmprint-recog/dataset/` folder
 
-``` Python
+```
 python main.py --db_prefix IITD-Left --train_path ../dataset/IITD5/IITD\ Left --epochs 500 --alpha 10 --model RFN-128 --shifted_size 5
 ```
 
@@ -78,7 +78,7 @@ There will be a folder name `IITD-Left_a10s5mRFN-128_XXX` in the `./checkpoint/`
 
 Let's take epoch 300 as an example, `--save_mmat` is used when plotting CMC
 
-``` Python 
+```
 python protocols/iitdlike_roc.py --test_path ../dataset/IITD5/IITD\ Right --model_path ./checkpoint/IITD-Left_a10s5mRFN-128_XXX/ckpt_epoch_300.pth --out_path ./output/IITD-Right-test.npy --shift_size 5 --save_mmat True
 ```
 
@@ -86,13 +86,13 @@ python protocols/iitdlike_roc.py --test_path ../dataset/IITD5/IITD\ Right --mode
 
 *ROC:*
 
-``` Python
+```
 python plot/roc_iitd.py --src_npy ./output/IITD-Right-test.npy --dest ./output/IITD-Right-test.pdf --label RFN-128
 ```
 
 *CMC:*
 
-``` Python
+```
 python plot/cmc_iitd.py --src_npy ./output/IITD-Right-test.npy --dest ./output/IITD-Right-test_cmc.pdf --label RFN-128
 ```
 
